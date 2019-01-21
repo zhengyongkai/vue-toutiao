@@ -3,7 +3,7 @@
       <div  class="app">
             <div class="header">
               <x-icon type="ios-search" style="margin:2px  4px;width:20px;" size="25"></x-icon>
-              <input >
+              <input  placeholder="五行勇士首胜 | 复兴号和谐号飙车 | 日本及八路军去世">
               <font >热搜</font>
             </div>    
             <div class="navbar">

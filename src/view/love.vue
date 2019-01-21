@@ -5,11 +5,29 @@
     <div style="margin:0 20px;">
         <scroller lock-y :scrollbar-x=false>
             <div class="box1">
-               
+              
+                     <div  v-for="(val,index) in  this.$store.state.data" v-if='index<=6'>
+                         <div  v-if="index <=2" class="box1-item " >
+                            <living :logo="true" :content="val"></living>
+                             
+                            <div class="badge"><badge text="直播中" slot="reference"></badge></div>
+                           <div class="font"><font>{{val.media_name}}</font></div>
+                           
+                           
+                         </div>
+                           <div class="box1-item " v-else>
+                           <living :logo="false" :content="val"></living>
+                             <div  class="font"><font>{{val.media_name}}</font></div>
+                         </div>
+                          
+                    </div>
+                   
                 
+              
             </div>
         </scroller>
-        <divider>最近发表</divider>
+        <hr size="6">
+        <br>
          
         <div class="item">
             <router-link  
@@ -27,14 +45,16 @@
                             repin_count:val.repin_count,
                             comment_count:val.comment_count,
                             keywords:val.keywords,
-                            source_url:val.source_url
+                            source_url:val.source_url,
+                            group_id:val.group_id,
+                            item_id:val.item_id
                         }
                 }"
                 class="items"
                 :key="index"
                
                 >
-               
+<!--                
                 <p class="title">{{val.title}}</p>
                 <div>
                     
@@ -50,10 +70,47 @@
 
                       
                     </div>
+                </div> -->
+                <div class="item_header">
+                    <div class="item_img">
+                        <img :src="val.media_info.avatar_url"/>
+                        
+                    </div>
+                    <div class="item_autor">
+                        <div class="autor_name">
+                             {{val.media_name}}
+                        </div>
+                        <div class="publish_time">
+                            {{val.datetime|date}}
+                        </div>
+
+                    </div>
+                    
                 </div>
-              <hr width="100%"  size="5" >
+                <br>
+
+                <div class="item_content">
+                    {{val.title}}
+                    <br>
+                    <br>
+                     <img alt="加载出错" v-for="(img,index) in val.image_list"    :key="index" v-lazy="img.url" class="postimg" >
+
+                </div>
+                <br>
+                <div class="item_handler">
+                    <flexbox>
+                        <flexbox-item>
+                            <i class="fa fa-share-square-o"></i>
+                            55
+                        </flexbox-item>
+                        <flexbox-item><i class="fa fa-commenting-o"></i> {{val.repin_count}}</flexbox-item>
+                        <flexbox-item><i class="fa fa-heart-o"></i> {{val.comment_count}}</flexbox-item>
+                    </flexbox>
+                </div>
+            <br>
 
             </router-link>
+            
         </div>
    
     </div>
@@ -83,39 +140,77 @@ body{
       
 }
 .box1 {
-  height: 100px;
+    margin :5px;
+  height: 105px;
   position: relative;
-  width: 180%;
+  width: 780px;;
 
         .box1-item {
-        width:100px;;
-        height: 100px;
+        width:60px;;
+        height: 70px;
 
         display:inline-block;
-        
+       
         float: left;
         text-align: center;
-        line-height: 100px;
+       
+        margin-right :40px;
 
-            img{
-                width: 50px;
-                height: 50px;
-                border-radius: 20px;
+            .badge{
+             position :relative;
+                bottom:15px;
+               
 
+            }
+          
+            .font{
+                 position :absolute;
+                z-index :999;
+                top:70px;
+            
                 
+                font-size :12px;
             }
         }
 }
 
 
 .item{
-   
+    
     .items{
         color:black;
         text-decoration none;
-     
-
        
+        .item_header{
+
+            .item_img{
+                img{
+                    width :35px;
+                    border-radius :50%;      
+                    float:left;   
+
+                }
+            }
+
+            .item_autor{
+                margin-left :50px;
+                .autor_name{
+                    font-size :13px;
+
+                }
+                .publish_time{
+                    color :lightgray;
+                    font-size :12px;
+                    margin-top :5px;
+                }
+            }
+
+            .item_content{
+                 margin-bottom :50px;
+            }
+
+
+        }
 
         .title{
 
@@ -162,11 +257,13 @@ body{
 </style>
 
 <script>
-import { Scroller, Divider, Spinner, XButton, Group, Cell, LoadMore } from 'vux'
+import { Flexbox, FlexboxItem } from 'vux'
+import { Scroller, Divider, Spinner, XButton, Group, Cell, LoadMore,Badge } from 'vux'
   import { Toast, MessageBox ,Loadmore} from 'mint-ui';
   import { XImg } from 'vux'
   import { Lazyload } from 'mint-ui';
 import { mapMutations } from 'vuex'
+ import living from "@/components/living.vue"
 
 
   export default {
@@ -190,7 +287,11 @@ import { mapMutations } from 'vuex'
         Lazyload,
         Cell,
         LoadMore,
-        XImg
+        Badge,
+        XImg,
+        Flexbox,
+        FlexboxItem,
+        living
     },
     
     mounted(){

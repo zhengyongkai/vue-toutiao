@@ -7,7 +7,8 @@ import Mint from 'mint-ui';
 import $ from 'jquery'
 import lazyimg from '@/assets/logo.png'
 import 'mint-ui/lib/style.css';
-
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 import "font-awesome/css/font-awesome.min.css";
 import store from './store'
 
@@ -18,6 +19,7 @@ Vue.use(VueLazyLoad,{
 })
 
 Vue.use(Mint);
+Vue.use(ElementUI)
 
 
 Vue.config.productionTip = false

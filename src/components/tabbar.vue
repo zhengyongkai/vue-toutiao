@@ -3,7 +3,10 @@
 		<div class="warp">
 			<Item :txt='item.txt' :page='item.page' @change='getVal' :key="item.page" v-for='item in tabbarDes' :sel='selected'>
  
-				<img :src="item.normalImg" slot='normalImg'>
+				
+				 
+				<img :src="item.normalImg"  slot="normalImg" >
+				 
 				<img :src="item.activeImg" slot='activeImg'>
 			</Item>
 		</div>
@@ -17,6 +20,7 @@
 		},
 		data:function(){
 			return{
+				   visible: false,
 				selected:'home',
 				tabbarDes:[
 					{

@@ -41,20 +41,14 @@
                         <div class="newsinfo"  v-html=" newsInfo">
                            
                         </div>
-                        <div class="content_bottom">
-                            <div >
-                                相关搜索
-                            </div>
-                              
-                           
-                         
+                        
                         </div>
-                     
-                        </div>
+                      
 
-                         <div class="comment">
+                         <div class="comment" v-for="(index,i) in comment">
                              
-                            <comment></comment>
+                            <comment :comment="index"></comment>
+                             <br>
                         </div>
                 </div>
             </div>
@@ -120,8 +114,9 @@
             font-size :20px;
         }
         .content{
-            margin-bottom :30px;
+            margin-bottom :50px;
             clear:both;
+
             div{
                float: left;
                 
@@ -173,6 +168,10 @@
 
             
         }
+        .comment{
+            margin-top :50px;
+        }
+
 
 
   
@@ -210,6 +209,7 @@
       margin-top: 50px;
 }
 .comment{
+   
     clear: both;
     display:block;
     margin-top  :30px;
@@ -237,7 +237,8 @@ import jsonp from 'jsonp'
         scroll:"",
         Istitle:false,
         newsInfo:"",
-        loading:true
+        loading:true,
+        comment:[]
       };
     },
     watch:{
@@ -267,12 +268,24 @@ import jsonp from 'jsonp'
       },
       getApiContent(){
             var url = this.params.source_url+ 'info/';
-        
+            var comment="/api/comment/list/?group_id="+this.params.group_id+"&item_id="+this.params.item_id+"&offset=0&count=10"
+            //获取内容
             axios.get(url).then((result) => {
                 this.newsInfo=result.data.data["content"];
+                
             }).catch((err) => {
                 
             });
+          
+
+            jsonp("https://www.toutiao.com/api/comment/list/?group_id="+this.params.group_id+"&item_id="+this.params.item_id+"&offset=0&count=10",
+                (err, res)=> {
+                   console.log(res.data.comments)
+                  this.comment=res.data.comments
+            })
+
+
+
       }
     },
     activated(){

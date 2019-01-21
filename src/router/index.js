@@ -13,6 +13,7 @@ import service from '@/view/service'
 import local from '@/view/local'
 import info from '@/view/info'
 import autor from '@/view/autor'
+import living from '@/components/living'
 Vue.use(Router)
 
 
@@ -21,9 +22,9 @@ export default new Router({
     {
       path: '/app',
       name: 'app',
-      component: App,
+      component: living,
      
-      redirect:"love",
+    redirect:"love",
     },
     {
       path: '/',

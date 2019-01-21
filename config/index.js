@@ -17,7 +17,22 @@ module.exports = {
         pathRewrite: {
           '^/': ''
         }
+      },
+      '/xxx': {
+        target: 'https://www.toutiao.com/api',
+        secure: false,  
+        changeOrigin: true,
+        pathRewrite: {
+          '^/xxx': '/'
+        }
+        
 
+      },
+      '/weather': {
+        target: 'https://www.sojson.com/',
+        secure: false,  
+        changeOrigin: true,
+       
       }
     },
 
