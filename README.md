@@ -20,6 +20,10 @@
 ![image](https://github.com/zhengyongkai/Vue/blob/master/%E9%83%A8%E5%88%86%E6%88%AA%E5%9B%BE/3.png)
 ![image](https://github.com/zhengyongkai/Vue/blob/master/%E9%83%A8%E5%88%86%E6%88%AA%E5%9B%BE/4.png)
 ![image](https://github.com/zhengyongkai/Vue/blob/master/%E9%83%A8%E5%88%86%E6%88%AA%E5%9B%BE/5.png)
+![image](https://github.com/zhengyongkai/Vue/blob/master/%E9%83%A8%E5%88%86%E6%88%AA%E5%9B%BE/1548059054(1).png)
+![image](https://github.com/zhengyongkai/Vue/blob/master/%E9%83%A8%E5%88%86%E6%88%AA%E5%9B%BE/1548059073(1).png)
+## 1. 21 
+#### 修改了关注页面，增加了评论
 
 
 # 还没做..
